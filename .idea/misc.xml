@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_add_training.xml" value="0.21808510638297873" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/app_bar_add_training.xml" value="0.21808510638297873" />
+        <entry key="app/src/main/res/layout/content_add_training.xml" value="0.21808510638297873" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layouts/component/layout/add_workout_component.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/content/layout/content_add_training.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/fragment/layout/fragment_training.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/recycler/layout/recycler_weight_wrap.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/recycler/layout/recycler_workout.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/recycler/layout/recycler_workout_wrap.xml" value="0.32708333333333334" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

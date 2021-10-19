@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid.common
+package com.codaid.trailogandroid.common.view_model
 
 sealed class Result<out T : Any> {
 

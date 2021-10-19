@@ -1,3 +1,118 @@
 <resources>
-    <string name="app_name">TrailogAndroid</string>
+    <string name="app_name">Trailog</string>
+
+    <string name="saved_user_id">user_id</string>
+    <string name="default_user_id">user id not stored in this preference!!</string>
+    <string name="saved_email">email</string>
+    <string name="default_email">trailog@example.com</string>
+    <string name="preference_file_key">com.codaid.trailog</string>
+
+    <string name="description_fab">体重・アクティビティの追加</string>
+    <string name="description_logo">ロゴマーク</string>
+
+    <string name="tab_title_weight">体重</string>
+    <string name="tab_title_training">筋トレ</string>
+    <string name="tab_title_workout">有酸素</string>
+
+    <string name="menu_dash_board">ダッシュボード</string>
+    <string name="menu_account">アカウント情報</string>
+    <string name="menu_add_weight">体重追加・削除</string>
+    <string name="menu_add_training">筋トレ追加</string>
+    <string name="menu_add_workout">有酸素追加</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_change_button_label">変更</string>
+    <string name="menu_logout_label">ログアウト</string>
+
+    <string name="register"><u>新規登録はこちらから</u></string>
+    <string name="no_login_user">ログインしていません</string>
+    <string name="change_disp_name">表示名を変更しました</string>
+    <string name="logout_complete_message">ログアウトしました</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_signin">SigninActivity</string>
+    <string name="title_activity_add_weight">AddWeightActivity</string>
+    <string name="title_activity_add_training">AddTrainingActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_add_workout">AddWorkoutActivity</string>
+
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password_confirm">Password (確認用)</string>
+    <string name="prompt_date">日付</string>
+    <string name="prompt_weight">体重 [kg]</string>
+    <string name="prompt_event">種目</string>
+    <string name="prompt_event_weight">負荷 [kg]</string>
+    <string name="prompt_rep">回数 [回]</string>
+    <string name="prompt_minutes">時間 [分]</string>
+    <string name="prompt_max_bpm">max [bpm]</string>
+    <string name="prompt_avg_bpm">avg [bpm]</string>
+
+    <string name="action_login">ログイン</string>
+    <string name="action_sign_up">新規登録</string>
+    <string name="action_add">追加</string>
+    <string name="action_delete">削除</string>
+    <string name="action_add_card">種目・回数の追加</string>
+    <string name="action_logout">ログアウト</string>
+
+    <string name="dialog_title">アクティビティの削除</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_del_message">%sを本当に削除しますか？</string>
+    <string name="dialog_del_failed">削除失敗しました</string>
+    <string name="dialog_del_complete">削除完了しました</string>
+
+    <string name="nodata_weight">体重を登録してください</string>
+    <string name="nodata_training">筋トレを登録してください</string>
+    <string name="nodata_workout">有酸素を登録してください</string>
+
+    <string name="invalid_username">有効なusernameを入力してください</string>
+    <string name="invalid_email">有効なemailを入力してください</string>
+    <string name="invalid_password">パスワードは6文字以上で入力してください</string>
+    <string name="invalid_password_confirm">パスワードが合致しません</string>
+    <string name="invalid_date">日付を入力してください</string>
+    <string name="invalid_weight">体重を入力してください</string>
+    <string name="invalid_weight_training">負荷を入力してください</string>
+    <string name="invalid_reps">回数を入力してください</string>
+    <string name="invalid_minutes">時間[分]を入力してください</string>
+    <string name="invalid_max_bpm">最大bpmを入力してください</string>
+    <string name="invalid_avg_bpm">平均bpmを入力してください</string>
+
+    <string name="failed_login">ログイン失敗</string>
+    <string name="failed_signup">新規登録失敗</string>
+    <string name="failed_add_weight">体重追加失敗</string>
+    <string name="failed_delete_weight">体重削除失敗</string>
+
+    <string name="error_code_already_in_use">ERROR_EMAIL_ALREADY_IN_USE</string>
+    <string name="error_message_already_in_use">既にアカウントが存在します</string>
+
+    <string name="date_format">%d-%02d-%02d</string>
+    <string name="date_format_view">%s/%s</string>
+    <string-array name="list_training">
+        <item>ベンチプレス</item>
+        <item>スミスマシン</item>
+        <item>ダンベルフライ</item>
+        <item>チェストプレス</item>
+        <item>リアレイズ</item>
+        <item>ショルダープレス</item>
+        <item>フロントレイズ</item>
+        <item>サイドレイズ</item>
+        <item>アームカール</item>
+        <item>プリチャーカール</item>
+        <item>トライセプスエクステンション(マシン)</item>
+        <item>トライセプスエクステンション(ダンベル)</item>
+        <item>クランチ</item>
+        <item>アブドミナルクランチ</item>
+        <item>アブローラー</item>
+        <item>ウィンドミル</item>
+        <item>レッグカール</item>
+        <item>レッグプレス</item>
+        <item>ヒップアダクション</item>
+        <item>ヒップアブダクション</item>
+    </string-array>
+    <string-array name="list_workout">
+        <item>バイク</item>
+        <item>ラン</item>
+        <item>スイム</item>
+    </string-array>
 </resources>

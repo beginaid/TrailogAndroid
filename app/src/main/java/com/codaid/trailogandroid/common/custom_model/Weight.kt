@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid.common
+package com.codaid.trailogandroid.common.custom_model
 
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.*

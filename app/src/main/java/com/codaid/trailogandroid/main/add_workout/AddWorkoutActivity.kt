@@ -15,13 +15,12 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
-import com.codaid.trailogandroid.main.dash_board.MainActivity
-import com.codaid.trailogandroid.main.setting.SettingActivity
+import com.codaid.trailogandroid.MainActivity
+import com.codaid.trailogandroid.SettingActivity
 import com.codaid.trailogandroid.main.add_training.AddTrainingActivity
 import com.codaid.trailogandroid.main.add_weight.AddWeightActivity
 import com.codaid.trailogandroid.main.add_weight.afterTextChanged

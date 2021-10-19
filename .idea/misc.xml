@@ -8,12 +8,15 @@
         <entry key="app/src/main/res/layout/app_bar_add_training.xml" value="0.21808510638297873" />
         <entry key="app/src/main/res/layout/content_add_training.xml" value="0.21808510638297873" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layouts/activity/layout/activity_main.xml" value="0.3170289855072464" />
         <entry key="app/src/main/res/layouts/component/layout/add_workout_component.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layouts/content/layout/content_add_training.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layouts/fragment/layout/fragment_training.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layouts/navbar/layout/nav_header_main.xml" value="0.3170289855072464" />
         <entry key="app/src/main/res/layouts/recycler/layout/recycler_weight_wrap.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layouts/recycler/layout/recycler_workout.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layouts/recycler/layout/recycler_workout_wrap.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3234375" />
       </map>
     </option>
   </component>

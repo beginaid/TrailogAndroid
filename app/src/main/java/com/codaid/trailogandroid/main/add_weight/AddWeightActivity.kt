@@ -25,8 +25,8 @@ import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.databinding.ActivityAddWeightBinding
 import com.codaid.trailogandroid.main.add_training.AddTrainingActivity
 import com.codaid.trailogandroid.main.add_workout.AddWorkoutActivity
-import com.codaid.trailogandroid.main.dash_board.MainActivity
-import com.codaid.trailogandroid.main.setting.SettingActivity
+import com.codaid.trailogandroid.MainActivity
+import com.codaid.trailogandroid.SettingActivity
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

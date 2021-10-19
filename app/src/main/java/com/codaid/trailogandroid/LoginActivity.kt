@@ -7,7 +7,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.ActivityLoginBinding
-import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {

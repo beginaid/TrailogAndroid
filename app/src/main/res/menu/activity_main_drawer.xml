@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dash_board"
+            android:title="@string/menu_dash_board"/>
+        <item
+            android:id="@+id/nav_add_weight"
+            android:title="@string/menu_add_weight"/>
+        <item
+            android:id="@+id/nav_add_training"
+            android:title="@string/menu_add_training"/>
+        <item
+            android:id="@+id/nav_add_workout"
+            android:title="@string/menu_add_workout"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/menu_settings"/>
+    </group>
+</menu>

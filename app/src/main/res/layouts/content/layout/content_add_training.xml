@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_training"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/add_training">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="96dp"
         android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:hint="@string/prompt_date"
         android:focusable="false"
+        android:gravity="center"
+        android:hint="@string/prompt_date"
+        android:importantForAutofill="no"
         android:inputType="date"
         android:textColor="@color/black"
-        android:gravity="center"
-        android:importantForAutofill="no"
-        app:theme="@style/EditTextStyle"
+        app:layout_constraintBottom_toTopOf="@id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/scrollView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/EditTextStyle" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@id/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,81 +39,85 @@
             android:id="@+id/add_training_forms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/blue_strong"
-                app:cardElevation="0dp" >
+                app:cardElevation="0dp"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="1dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <Spinner
+                        android:id="@+id/event"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/event"
-                        android:hint="@string/prompt_event"
-                        android:textColor="@color/black"
-                        android:gravity="center"
                         android:entries="@array/list_training"
+                        android:gravity="center"
+                        android:hint="@string/prompt_event"
                         android:spinnerMode="dialog"
                         android:textAlignment="center"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined" />
+                        android:textColor="@color/black" />
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="@string/prompt_event_weight"
                         android:id="@+id/weight"
-                        android:inputType="number"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:autofillHints="no"
-                        app:theme="@style/EditTextStyle" />
-                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/prompt_rep"
-                        android:id="@+id/reps"
+                        android:autofillHints="no"
+                        android:gravity="center"
+                        android:hint="@string/prompt_event_weight"
                         android:inputType="number"
                         android:textColor="@color/black"
-                        android:gravity="center"
+                        app:theme="@style/EditTextStyle" />
+
+                    <EditText
+                        android:id="@+id/reps"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:autofillHints="no"
+                        android:gravity="center"
+                        android:hint="@string/prompt_rep"
+                        android:inputType="number"
+                        android:textColor="@color/black"
                         app:theme="@style/EditTextStyle" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
     </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fabs"
-        android:layout_marginBottom="@dimen/fab_margin_plus_bottom"
         android:layout_marginEnd="@dimen/fab_margin"
-        android:src="@drawable/plus"
+        android:layout_marginBottom="@dimen/fab_margin_plus_bottom"
         android:contentDescription="@string/description_fab"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:src="@drawable/plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/plus"
             android:contentDescription="@string/description_fab"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/plus"
+            app:backgroundTint="@color/primary"
             app:layout_constraintBottom_toTopOf="@id/fab_minus"
-            app:backgroundTint="@color/blue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="@null" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -122,13 +125,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
-            android:src="@drawable/ic_baseline_delete_24"
             android:contentDescription="@string/description_fab"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fab_plus"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:backgroundTint="@color/accent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:backgroundTint="@color/red"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fab_plus"
             app:tint="@null" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,29 +140,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:enabled="false"
         android:text="@string/action_add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:gravity="center"
         android:indeterminate="true"
+        android:indeterminateTint="@color/accent"
         android:indeterminateTintMode="src_in"
-        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

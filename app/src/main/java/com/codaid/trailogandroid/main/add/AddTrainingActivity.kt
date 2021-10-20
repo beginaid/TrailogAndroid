@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.add
 
 import android.content.Context
 import android.os.Bundle
@@ -12,42 +12,45 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.children
+import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
+import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
-import com.codaid.trailogandroid.common.custom_model.Workout
-import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
+import com.codaid.trailogandroid.common.Utils.Companion.optionList
+import com.codaid.trailogandroid.common.custom_model.Training
+import com.codaid.trailogandroid.databinding.ActivityAddTrainingBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
-class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+
+class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     AdapterView.OnItemSelectedListener {
 
-    private lateinit var binding: ActivityAddWorkoutBinding
+    private lateinit var binding: ActivityAddTrainingBinding
     private var mGenre by Delegates.notNull<Int>()
     private lateinit var userId: String
     private lateinit var email: String
     private val eventList = mutableListOf<String>()
-    private val minutesList = mutableListOf<String>()
-    private val maxBpmList = mutableListOf<String>()
-    private val avgBpmList = mutableListOf<String>()
+    private val weightList = mutableListOf<String>()
+    private val repsList = mutableListOf<String>()
     private val utils = Utils()
     private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddWorkoutBinding.inflate(layoutInflater)
-        val date = binding.appBar.contentAddWorkout.date
-        val addWorkoutForms = binding.appBar.contentAddWorkout.addWorkoutForms
-        val fabPlus = binding.appBar.contentAddWorkout.fabPlus
-        val fabMinus = binding.appBar.contentAddWorkout.fabMinus
-        val add = binding.appBar.contentAddWorkout.add
-        val loading = binding.appBar.contentAddWorkout.loading
+        binding = ActivityAddTrainingBinding.inflate(layoutInflater)
+        val date = binding.appBar.contentAddTraining.date
+        val addTrainingForms = binding.appBar.contentAddTraining.addTrainingForms
+        val fabPlus = binding.appBar.contentAddTraining.fabPlus
+        val fabMinus = binding.appBar.contentAddTraining.fabMinus
+        val add = binding.appBar.contentAddTraining.add
+        val loading = binding.appBar.contentAddTraining.loading
         var forms: List<View>
         val root = binding.root
 
-        mGenre = 3
+        mGenre = 2
         setContentView(root)
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first
@@ -65,19 +68,19 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
 
         fabPlus.setOnClickListener {
-            val component = View.inflate(this, R.layout.add_workout_component, null)
-            addWorkoutForms.addView(component)
+            val component = View.inflate(this, R.layout.add_training_component, null)
+            addTrainingForms.addView(component)
         }
 
         fabMinus.setOnClickListener {
-            val childCount = addWorkoutForms.childCount
+            val childCount = addTrainingForms.childCount
             if (childCount > 1) {
-                addWorkoutForms.removeViewAt(childCount - 1)
+                addTrainingForms.removeViewAt(childCount - 1)
             }
         }
 
         add.setOnClickListener {
-            forms = binding.appBar.contentAddWorkout.addWorkoutForms.children.toList()
+            forms = binding.appBar.contentAddTraining.addTrainingForms.children.toList()
             when {
                 utils.checkFormsFilled(forms) -> {
                     utils.showError(R.string.invalid_weight)
@@ -88,17 +91,16 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                     im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
                     for (form in forms) {
                         val event = form.findViewById<Spinner>(R.id.event).selectedItem.toString()
-                        val minutes = form.findViewById<EditText>(R.id.minutes).text.toString()
-                        val maxBpm = form.findViewById<EditText>(R.id.max_bpm).text.toString()
-                        val avgBpm = form.findViewById<EditText>(R.id.avg_bpm).text.toString()
+                        val weight = form.findViewById<EditText>(R.id.weight).text.toString()
+                        val reps = form.findViewById<EditText>(R.id.reps).text.toString()
                         eventList.add(event)
-                        minutesList.add(minutes)
-                        maxBpmList.add(maxBpm)
-                        avgBpmList.add(avgBpm)
+                        weightList.add(weight)
+                        repsList.add(reps)
                     }
+
                     val items = mutableMapOf<String, Map<String, String>>()
                     val docRefAlready =
-                        db.collection("workouts_$userId").document(date.text.toString())
+                        db.collection("trainings_$userId").document(date.text.toString())
                     docRefAlready.get()
                         .addOnSuccessListener { document ->
                             if (document.exists()) {
@@ -108,27 +110,25 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                                 val contentsMap =
                                     document.get("contents") as MutableMap<String, MutableMap<String, String>>
                                 for (key in contentsMap.keys) {
-                                    item["時間"] = contentsMap[key]?.get("時間").toString()
-                                    item["最大心拍"] = contentsMap[key]?.get("最大心拍").toString()
-                                    item["平均心拍"] = contentsMap[key]?.get("平均心拍").toString()
+                                    item["負荷"] = contentsMap[key]?.get("負荷").toString()
+                                    item["回数"] = contentsMap[key]?.get("回数").toString()
                                     items[key] = item
                                 }
                             }
                             for (i in eventList.indices) {
                                 val item = mutableMapOf<String, String>()
-                                item["時間"] = minutesList[i]
-                                item["最大心拍"] = maxBpmList[i]
-                                item["平均心拍"] = avgBpmList[i]
+                                item["負荷"] = weightList[i]
+                                item["回数"] = repsList[i]
                                 items[eventList[i]] = item
                             }
-                            val workoutAdded = Workout(items)
+                            val trainingAdded = Training(items)
 
                             val docRef =
-                                db.collection("workouts_$userId").document(date.text.toString())
+                                db.collection("trainings_$userId").document(date.text.toString())
                             if (docRef.get().isSuccessful) {
-                                docRef.update("contents", workoutAdded.contents)
+                                docRef.update("contents", trainingAdded.contents)
                             } else {
-                                docRef.set(workoutAdded)
+                                docRef.set(trainingAdded)
                             }
                             loading.visibility = View.GONE
                         }
@@ -143,7 +143,7 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onResume() {
         super.onResume()
-        mGenre = 3
+        mGenre = 2
         utils.selectItem(binding.navView, mGenre)
         binding.appBar.toolbar.title = navTitles[mGenre]
     }
@@ -157,21 +157,22 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onOptionsItemSelected(item)
         utils.goAnotherActivity(
             binding.appBar.toolbar,
-            Utils.optionList.indexOf(item.itemId),
+            optionList.indexOf(item.itemId),
             "option"
         )
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        utils.goAnotherActivity(binding.appBar.toolbar, Utils.navList.indexOf(item.itemId), "nav")
+        utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>) {
+    override fun onNothingSelected(p0: AdapterView<*>?) {
     }
+
 }

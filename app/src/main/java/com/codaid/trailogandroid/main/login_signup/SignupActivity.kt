@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.login_signup
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.ActivitySignupBinding
+import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 

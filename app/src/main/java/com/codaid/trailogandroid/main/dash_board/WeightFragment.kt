@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.codaid.trailogandroid.DateLabelFormatter
 import com.codaid.trailogandroid.R
+import com.codaid.trailogandroid.common.DateLabelFormatter
 import com.codaid.trailogandroid.databinding.FragmentWeightBinding
 import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.components.XAxis
@@ -62,14 +62,14 @@ class WeightFragment : Fragment() {
                 setupLineChart()
                 binding.lineChartExample.data = lineDataWithCount()
                 binding.lineChartExample.invalidate()
-            } else{
+            } else {
                 binding.noDataText.text = getString(R.string.nodata_weight)
             }
-        binding.loading.visibility = View.GONE
+            binding.loading.visibility = View.GONE
         }
     }
 
-    private suspend fun getWeights(userId: String?){
+    private suspend fun getWeights(userId: String?) {
         val querySnapshot = userId?.let { db.collection("weights_$it").get() }?.await()
         if (querySnapshot != null) {
             for (document in querySnapshot.documents) {
@@ -85,10 +85,13 @@ class WeightFragment : Fragment() {
         val sharedPref = requireContext().getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE
         )
-        return sharedPref.getString(getString(R.string.saved_user_id), getString(R.string.default_user_id))
+        return sharedPref.getString(
+            getString(R.string.saved_user_id),
+            getString(R.string.default_user_id)
+        )
     }
 
-    private fun setupLineChart(){
+    private fun setupLineChart() {
         binding.lineChartExample.apply {
             description.isEnabled = false
             setTouchEnabled(false)
@@ -110,9 +113,9 @@ class WeightFragment : Fragment() {
         }
     }
 
-    private fun lineDataWithCount():LineData {
+    private fun lineDataWithCount(): LineData {
         val yEntryList = mutableListOf<Entry>()
-        for (i in yList.indices){
+        for (i in yList.indices) {
             yEntryList.add(
                 Entry(i.toFloat(), yList[i])
             )
@@ -126,7 +129,7 @@ class WeightFragment : Fragment() {
         }
 
         yValues = LineDataSet(yEntryList, "weight").apply {
-            axisDependency =  YAxis.AxisDependency.LEFT
+            axisDependency = YAxis.AxisDependency.LEFT
             setDrawCircleHole(false)
             setDrawValues(false)
             setCircleColor(colorBlue)

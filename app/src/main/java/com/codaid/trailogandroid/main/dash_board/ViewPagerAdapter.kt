@@ -1,11 +1,9 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.dash_board
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.codaid.trailogandroid.main.dash_board.TrainingFragment
-import com.codaid.trailogandroid.main.dash_board.WeightFragment
-import com.codaid.trailogandroid.main.dash_board.WorkoutFragment
+import com.codaid.trailogandroid.R
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

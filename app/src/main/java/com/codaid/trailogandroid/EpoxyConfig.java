@@ -8,4 +8,5 @@ import com.airbnb.epoxy.EpoxyDataBindingLayouts;
         R.layout.recycler_workout_wrap,
         R.layout.recycler_workout
 })
-interface EpoxyConfig {}
+interface EpoxyConfig {
+}

@@ -1,10 +1,11 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.dash_board
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles

@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.add
 
 import android.content.Context
 import android.content.Intent
@@ -9,12 +9,14 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.common.custom_model.Weight
 import com.codaid.trailogandroid.databinding.ActivityAddWeightBinding
+import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

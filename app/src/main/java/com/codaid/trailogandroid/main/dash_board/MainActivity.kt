@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid
+package com.codaid.trailogandroid.main.dash_board
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView

@@ -50,20 +50,15 @@ class SignupActivity : AppCompatActivity() {
                 val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
                 auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            startActivity(Intent(applicationContext, MainActivity()::class.java))
+                    .addOnSuccessListener {
+                        startActivity(Intent(applicationContext, MainActivity()::class.java))
+                    }
+                    .addOnFailureListener { e ->
+                        val errorCode = (e as FirebaseAuthException).errorCode
+                        if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                            utils.showError(R.string.error_message_already_in_use)
                         } else {
-                            try {
-                                throw task.exception!!
-                            } catch (e: Exception) {
-                                val errorCode = (e as FirebaseAuthException).errorCode
-                                if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
-                                    utils.showError(R.string.error_message_already_in_use)
-                                } else {
-                                    utils.showError(R.string.failed_signup)
-                                }
-                            }
+                            utils.showError(R.string.failed_signup)
                         }
                     }
             }

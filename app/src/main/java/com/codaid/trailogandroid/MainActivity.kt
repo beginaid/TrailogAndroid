@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.ActivityMainBinding
-import com.codaid.trailogandroid.main.dash_board.ViewPagerAdapter
 import com.google.android.material.navigation.NavigationView
 import kotlin.properties.Delegates
 

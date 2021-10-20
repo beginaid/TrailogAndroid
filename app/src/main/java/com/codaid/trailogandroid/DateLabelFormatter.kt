@@ -1,4 +1,4 @@
-package com.codaid.trailogandroid.main.dash_board
+package com.codaid.trailogandroid
 
 import com.github.mikephil.charting.formatter.ValueFormatter
 

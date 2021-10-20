@@ -14,35 +14,35 @@
             android:name="com.codaid.trailogandroid.main.add_workout.AddWorkoutActivity"
             android:exported="true"
             android:label="@string/title_activity_add_workout"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar"
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.codaid.trailogandroid.SettingActivity"
             android:exported="true"
             android:label="@string/title_activity_setting"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar" />
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar" />
         <activity
             android:name="com.codaid.trailogandroid.main.add_training.AddTrainingActivity"
             android:exported="true"
             android:label="@string/title_activity_add_training"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar"
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.codaid.trailogandroid.main.add_weight.AddWeightActivity"
+            android:name="com.codaid.trailogandroid.AddWeightActivity"
             android:exported="true"
             android:label="@string/title_activity_add_weight"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar"
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.codaid.trailogandroid.SignupActivity"
             android:exported="true"
             android:label="@string/title_activity_signin"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar" />
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar" />
         <activity
             android:name="com.codaid.trailogandroid.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar">
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -52,7 +52,7 @@
             android:name="com.codaid.trailogandroid.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Trailogandroid.NoActionBar">
+            android:theme="@style/Theme.TrailogAndroid.NoActionBar">
         </activity>
     </application>
 

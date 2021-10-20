@@ -22,7 +22,7 @@ import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
 import com.codaid.trailogandroid.MainActivity
 import com.codaid.trailogandroid.SettingActivity
 import com.codaid.trailogandroid.main.add_training.AddTrainingActivity
-import com.codaid.trailogandroid.main.add_weight.AddWeightActivity
+import com.codaid.trailogandroid.AddWeightActivity
 import com.codaid.trailogandroid.main.add_weight.afterTextChanged
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope

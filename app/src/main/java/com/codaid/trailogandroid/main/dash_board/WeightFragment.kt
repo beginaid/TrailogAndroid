@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.codaid.trailogandroid.DateLabelFormatter
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.databinding.FragmentWeightBinding
 import com.github.mikephil.charting.charts.Chart

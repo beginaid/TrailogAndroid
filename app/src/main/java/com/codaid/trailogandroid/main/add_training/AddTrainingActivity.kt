@@ -21,7 +21,7 @@ import com.codaid.trailogandroid.databinding.ActivityAddTrainingBinding
 import com.codaid.trailogandroid.main.add_workout.AddWorkoutActivity
 import com.codaid.trailogandroid.MainActivity
 import com.codaid.trailogandroid.SettingActivity
-import com.codaid.trailogandroid.main.add_weight.AddWeightActivity
+import com.codaid.trailogandroid.AddWeightActivity
 import com.google.android.material.navigation.NavigationView
 import kotlin.properties.Delegates
 import com.codaid.trailogandroid.R

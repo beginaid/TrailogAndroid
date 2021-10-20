@@ -5,7 +5,9 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -15,9 +17,9 @@ import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.codaid.trailogandroid.*
-import com.codaid.trailogandroid.main.add_training.AddTrainingActivity
+import com.codaid.trailogandroid.AddTrainingActivity
 import com.codaid.trailogandroid.AddWeightActivity
-import com.codaid.trailogandroid.main.add_workout.AddWorkoutActivity
+import com.codaid.trailogandroid.AddWorkoutActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -56,6 +58,27 @@ class Utils {
         val optionActivityList = listOf(
             SettingActivity()
         )
+    }
+
+    fun checkFormsFilled(forms: List<View>): Boolean {
+        val thisEventList = mutableListOf<String>()
+        val thisWeightList = mutableListOf<String>()
+        val thisRepsList = mutableListOf<String>()
+        for (form in forms) {
+            val thisEvent = form.findViewById<Spinner>(R.id.event).selectedItem.toString()
+            val thisWeight = form.findViewById<EditText>(R.id.weight).text.toString()
+            val thisReps = form.findViewById<EditText>(R.id.reps).text.toString()
+            if (thisEvent.isNotBlank()) {
+                thisEventList.add(thisEvent)
+            }
+            if (thisWeight.isNotBlank()) {
+                thisWeightList.add(thisWeight)
+            }
+            if (thisReps.isNotBlank()) {
+                thisRepsList.add(thisReps)
+            }
+        }
+        return (thisEventList.size == forms.size && thisWeightList.size == forms.size && thisRepsList.size == forms.size)
     }
 
     fun showDatePicker(editText: EditText) {

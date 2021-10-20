@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name="com.codaid.trailogandroid.main.add_workout.AddWorkoutActivity"
+            android:name="com.codaid.trailogandroid.AddWorkoutActivity"
             android:exported="true"
             android:label="@string/title_activity_add_workout"
             android:theme="@style/Theme.TrailogAndroid.NoActionBar"
@@ -22,7 +22,7 @@
             android:label="@string/title_activity_setting"
             android:theme="@style/Theme.TrailogAndroid.NoActionBar" />
         <activity
-            android:name="com.codaid.trailogandroid.main.add_training.AddTrainingActivity"
+            android:name="com.codaid.trailogandroid.AddTrainingActivity"
             android:exported="true"
             android:label="@string/title_activity_add_training"
             android:theme="@style/Theme.TrailogAndroid.NoActionBar"

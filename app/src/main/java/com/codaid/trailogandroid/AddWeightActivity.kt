@@ -61,24 +61,28 @@ class AddWeightActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
 
         add.setOnClickListener {
-            if (date.text.toString().isBlank()) {
-                utils.showError(R.string.invalid_date)
-            } else if (weight.text.toString().isBlank()) {
-                utils.showError(R.string.invalid_weight)
-            } else {
-                loading.visibility = View.VISIBLE
-                val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-                val weightAdded = Weight(weight.text.toString().toFloat())
-                db.collection("weights_$userId").document(date.text.toString()).set(weightAdded)
-                    .addOnSuccessListener {
-                        loading.visibility = View.GONE
-                        startActivity(Intent(applicationContext, MainActivity()::class.java))
-                    }
-                    .addOnFailureListener {
-                        loading.visibility = View.GONE
-                        utils.showError(R.string.failed_add_weight)
-                    }
+            when {
+                date.text.toString().isBlank() -> {
+                    utils.showError(R.string.invalid_date)
+                }
+                weight.text.toString().isBlank() -> {
+                    utils.showError(R.string.invalid_weight)
+                }
+                else -> {
+                    loading.visibility = View.VISIBLE
+                    val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                    val weightAdded = Weight(weight.text.toString().toFloat())
+                    db.collection("weights_$userId").document(date.text.toString()).set(weightAdded)
+                        .addOnSuccessListener {
+                            loading.visibility = View.GONE
+                            startActivity(Intent(applicationContext, MainActivity()::class.java))
+                        }
+                        .addOnFailureListener {
+                            loading.visibility = View.GONE
+                            utils.showError(R.string.failed_add_weight)
+                        }
+                }
             }
         }
 

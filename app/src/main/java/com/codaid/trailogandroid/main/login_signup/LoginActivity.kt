@@ -46,15 +46,15 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 loading.visibility = View.VISIBLE
                 auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            utils.setUserIdEmail(auth.currentUser)
-                            utils.clearAndGoActivity(MainActivity(), "main")
-                        } else {
-                            utils.showError(R.string.failed_login)
-                        }
+                    .addOnSuccessListener {
+                        utils.setUserIdEmail(auth.currentUser)
+                        utils.clearAndGoActivity(MainActivity(), "main")
+                        loading.visibility = View.GONE
                     }
-                loading.visibility = View.GONE
+                    .addOnFailureListener {
+                        utils.showError(R.string.failed_login)
+                        loading.visibility = View.GONE
+                    }
             }
         }
     }

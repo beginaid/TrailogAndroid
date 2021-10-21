@@ -57,10 +57,10 @@ class AddWeightActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding.navView.setNavigationItemSelectedListener(this)
         utils.setDefaultDate(date)
         date.setOnClickListener {
-            utils.showDatePicker(date)
+            utils.createDatePicker(date, this)
         }
         dateDelete.setOnClickListener {
-            utils.showDatePicker(dateDelete)
+            utils.createDatePicker(dateDelete, this)
         }
 
         add.setOnClickListener {

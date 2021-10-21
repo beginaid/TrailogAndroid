@@ -32,13 +32,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val currentUser = auth.currentUser
         if (currentUser == null) {
             utils.clearAndGoActivity(LoginActivity())
             return
         }
         mGenre = 0
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first

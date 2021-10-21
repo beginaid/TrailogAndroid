@@ -91,11 +91,11 @@ class Utils {
         return (thisEventList.size == forms.size && thisWeightList.size == forms.size && thisRepsList.size == forms.size)
     }
 
-    fun showDatePicker(editText: EditText) {
+    fun createDatePicker(editText: EditText, activity: Activity) {
         val localDate = LocalDate.now()
         val datePickerDialog = context?.let {
             DatePickerDialog(
-                it,
+                activity,
                 R.style.DialogTheme,
                 { _, year, month, dayOfMonth ->
                     editText.setText(
@@ -112,9 +112,9 @@ class Utils {
                 localDate.dayOfMonth
             )
         }
+        datePickerDialog?.show()
         val positiveColor = ContextCompat.getColor(context!!, R.color.primary)
         val negativeColor = ContextCompat.getColor(context!!, R.color.accent)
-        datePickerDialog?.show()
         datePickerDialog?.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(positiveColor)
         datePickerDialog?.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(negativeColor)
     }

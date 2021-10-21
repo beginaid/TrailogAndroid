@@ -27,8 +27,8 @@ class SignupActivity : AppCompatActivity() {
         auth = Firebase.auth
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_signup)
-//        setSupportActionBar(binding.toolbar)
-//        utils.setSupportActionBarStyle(supportActionBar)
+        setSupportActionBar(binding.toolbar)
+        utils.setSupportActionBarStyle(supportActionBar)
 
         val email = binding.email
         val password = binding.password

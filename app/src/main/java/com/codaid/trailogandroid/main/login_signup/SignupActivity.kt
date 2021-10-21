@@ -72,14 +72,6 @@ class SignupActivity : AppCompatActivity() {
 //        }
     }
 
-    public override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity()::class.java))
-        }
-    }
-
 //    override fun onSupportNavigateUp(): Boolean {
 //        super.onSupportNavigateUp()
 //        val intent = Intent(applicationContext, LoginActivity::class.java)

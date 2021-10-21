@@ -1,5 +1,6 @@
 package com.codaid.trailogandroid.main.dash_board
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.databinding.ActivitySettingBinding
+import com.codaid.trailogandroid.main.login_signup.LoginActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -41,6 +43,7 @@ class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.contentSetting.logout.setOnClickListener {
             auth.signOut()
+            utils.goLoginActivity()
         }
     }
 

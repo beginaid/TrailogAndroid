@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -26,6 +27,8 @@ import com.codaid.trailogandroid.main.add.AddWorkoutActivity
 import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.codaid.trailogandroid.main.dash_board.SettingActivity
 import com.codaid.trailogandroid.main.dash_board.ViewPagerAdapter
+import com.codaid.trailogandroid.main.login_signup.LoginActivity
+import com.codaid.trailogandroid.main.login_signup.SignupActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -137,6 +140,12 @@ class Utils {
         Log.d("test", context.toString())
         mIntent.flags = FLAG_ACTIVITY_NEW_TASK
         context?.startActivity(mIntent)
+    }
+
+    fun goLoginActivity() {
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
+        context?.startActivity(intent)
     }
 
     fun createToolbar(

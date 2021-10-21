@@ -1,5 +1,6 @@
 package com.codaid.trailogandroid.main.dash_board
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu

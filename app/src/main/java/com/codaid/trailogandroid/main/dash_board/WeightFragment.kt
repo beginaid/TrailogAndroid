@@ -50,6 +50,7 @@ class WeightFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lineChart.setNoDataText("")
         binding.loading.visibility = View.VISIBLE
         userId = utils.setSharedPreference().first
         CoroutineScope(Dispatchers.Main).launch {
@@ -80,7 +81,6 @@ class WeightFragment : Fragment() {
 
     private fun setupLineChart() {
         binding.lineChart.apply {
-            setNoDataText("")
             getPaint(Chart.PAINT_INFO).textSize =
                 com.github.mikephil.charting.utils.Utils.convertDpToPixel(17f)
             description.isEnabled = false

@@ -137,13 +137,13 @@ class Utils {
     }
 
     fun goAnotherActivity(toolbar: androidx.appcompat.widget.Toolbar, mGenre: Int, loc: String) {
-        toolbar.title = navTitles[mGenre]
+//        toolbar.title = navTitles[mGenre]
+        println(mGenre)
         if (loc == "nav") {
             mIntent = Intent(context, activityList[mGenre]::class.java)
         } else if (loc == "option") {
             mIntent = Intent(context, optionActivityList[mGenre]::class.java)
         }
-        Log.d("test", context.toString())
         mIntent.flags = FLAG_ACTIVITY_NEW_TASK
         context?.startActivity(mIntent)
     }

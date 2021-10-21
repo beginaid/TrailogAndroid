@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +25,7 @@ import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
 
-class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    AdapterView.OnItemSelectedListener {
+class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityAddTrainingBinding
     private var mGenre by Delegates.notNull<Int>()
@@ -159,25 +157,18 @@ class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println("optionMenuItemSelected")
         super.onOptionsItemSelected(item)
-        utils.goAnotherActivity(
-            binding.appBar.toolbar,
-            optionList.indexOf(item.itemId),
-            "option"
-        )
+        println(item)
+        utils.goAnotherActivity(binding.appBar.toolbar, optionList.indexOf(item.itemId), "option")
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        println("navigationMenuItemSelected")
         utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
     }
 
 }

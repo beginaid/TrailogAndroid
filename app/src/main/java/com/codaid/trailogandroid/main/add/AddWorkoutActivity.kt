@@ -14,7 +14,9 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.children
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
+import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
+import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.common.custom_model.Workout
 import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
 import com.codaid.trailogandroid.main.dash_board.MainActivity
@@ -23,8 +25,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
-class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    AdapterView.OnItemSelectedListener {
+class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityAddWorkoutBinding
     private var mGenre by Delegates.notNull<Int>()
@@ -162,21 +163,15 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onOptionsItemSelected(item)
         utils.goAnotherActivity(
             binding.appBar.toolbar,
-            Utils.optionList.indexOf(item.itemId),
+            optionList.indexOf(item.itemId),
             "option"
         )
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        utils.goAnotherActivity(binding.appBar.toolbar, Utils.navList.indexOf(item.itemId), "nav")
+        utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
     }
 }

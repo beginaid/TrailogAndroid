@@ -76,12 +76,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println("optionMenuItemSelected")
         super.onOptionsItemSelected(item)
         utils.goAnotherActivity(binding.appBar.toolbar, optionList.indexOf(item.itemId), "option")
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        println("navigationMenuItemSelected")
         utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

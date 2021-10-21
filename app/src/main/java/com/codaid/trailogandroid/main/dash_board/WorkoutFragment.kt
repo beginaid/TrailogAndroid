@@ -1,19 +1,16 @@
 package com.codaid.trailogandroid.main.dash_board
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.RecyclerWeightWrapBindingModel_
 import com.codaid.trailogandroid.RecyclerWorkoutBindingModel_
+import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.FragmentWorkoutBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,11 +21,11 @@ import kotlinx.coroutines.tasks.await
 
 class WorkoutFragment : Fragment() {
 
+    private lateinit var userId: String
     private var _binding: FragmentWorkoutBinding? = null
     private val binding get() = _binding!!
     private val db = Firebase.firestore
-    private lateinit var userId: String
-    lateinit var listener: AdapterView.OnItemClickListener
+    private val utils = Utils()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +37,7 @@ class WorkoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setSharedPreference()
+        userId = utils.setSharedPreference().first
         binding.loading.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.Main).launch {
             buildRecyclerView()
@@ -69,8 +66,8 @@ class WorkoutFragment : Fragment() {
                     allItems[document.id] = item
                 }
             }
-            .addOnFailureListener { e ->
-                Log.d("test", e.message.toString())
+            .addOnFailureListener {
+                utils.showError(R.string.failed_add_workout)
             }.await()
 
         if (allItems.isNotEmpty()) {
@@ -112,17 +109,12 @@ class WorkoutFragment : Fragment() {
                     CoroutineScope(Dispatchers.Main).launch {
                         binding.loading.visibility = View.VISIBLE
                         db.collection("workouts_$userId").document(date).delete().await()
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.dialog_del_complete,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        utils.showError(R.string.dialog_del_complete)
                         buildRecyclerView()
                         binding.loading.visibility = View.GONE
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), R.string.dialog_del_failed, Toast.LENGTH_SHORT)
-                        .show()
+                    utils.showError(R.string.failed_delete_workout)
                 }
             }
             .setNegativeButton(R.string.dialog_cancel) { _, _ ->
@@ -147,17 +139,6 @@ class WorkoutFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun setSharedPreference() {
-        val sharedPref = requireContext().getSharedPreferences(
-            getString(R.string.preference_file_key), Context.MODE_PRIVATE
-        )
-        userId = sharedPref.getString(
-            getString(R.string.saved_user_id),
-            getString(R.string.default_user_id)
-        )
-            .toString()
     }
 
     override fun onDestroyView() {

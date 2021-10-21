@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         val currentUser = auth.currentUser
         if (currentUser == null) {
-            utils.clearAndGoActivity(LoginActivity())
+            utils.clearAndGoActivity(LoginActivity(), "main")
             return
         }
         mGenre = 0

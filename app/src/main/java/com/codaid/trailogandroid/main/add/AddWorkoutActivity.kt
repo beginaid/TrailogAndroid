@@ -17,6 +17,7 @@ import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.custom_model.Workout
 import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
+import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -81,8 +82,8 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         add.setOnClickListener {
             forms = binding.appBar.contentAddWorkout.addWorkoutForms.children.toList()
             when {
-                utils.checkFormsFilled(forms) -> {
-                    utils.showError(R.string.invalid_weight)
+                !utils.checkWorkoutFormsFilled(forms) -> {
+                    utils.showError(R.string.invalid_form)
                 }
                 else -> {
                     loading.visibility = View.VISIBLE
@@ -133,6 +134,7 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                                 docRef.set(workoutAdded)
                             }
                             loading.visibility = View.GONE
+                            utils.clearAndGoActivity(MainActivity(), "workout")
                         }
                         .addOnFailureListener {
                             loading.visibility = View.GONE

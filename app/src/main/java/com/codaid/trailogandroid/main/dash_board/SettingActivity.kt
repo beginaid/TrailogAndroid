@@ -43,7 +43,7 @@ class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         binding.appBar.toolbar.title = navTitles[mGenre]
         binding.appBar.contentSetting.logout.setOnClickListener {
             auth.signOut()
-            utils.clearAndGoActivity(LoginActivity())
+            utils.clearAndGoActivity(LoginActivity(), "main")
         }
     }
 

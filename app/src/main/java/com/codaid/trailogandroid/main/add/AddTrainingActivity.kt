@@ -19,6 +19,7 @@ import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.common.custom_model.Training
 import com.codaid.trailogandroid.databinding.ActivityAddTrainingBinding
+import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -83,8 +84,9 @@ class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         add.setOnClickListener {
             forms = binding.appBar.contentAddTraining.addTrainingForms.children.toList()
             when {
-                utils.checkFormsFilled(forms) -> {
-                    utils.showError(R.string.invalid_weight)
+                !utils.checkTrainingFormsFilled(forms) -> {
+                    println("error!!!!")
+                    utils.showError(R.string.invalid_form)
                 }
                 else -> {
                     loading.visibility = View.VISIBLE
@@ -132,6 +134,7 @@ class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                                 docRef.set(trainingAdded)
                             }
                             loading.visibility = View.GONE
+                            utils.clearAndGoActivity(MainActivity(), "training")
                         }
                         .addOnFailureListener {
                             loading.visibility = View.GONE

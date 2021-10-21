@@ -2,7 +2,6 @@ package com.codaid.trailogandroid.main.login_signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -49,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            utils.clearAndGoActivity(MainActivity())
+                            utils.setUserIdEmail(auth.currentUser)
+                            utils.clearAndGoActivity(MainActivity(), "main")
                         } else {
                             utils.showError(R.string.failed_login)
                         }

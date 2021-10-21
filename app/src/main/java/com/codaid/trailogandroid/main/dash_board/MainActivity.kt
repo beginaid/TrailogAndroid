@@ -1,13 +1,9 @@
 package com.codaid.trailogandroid.main.dash_board
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.codaid.trailogandroid.R
@@ -37,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         val currentUser = auth.currentUser
-        if(currentUser == null){
+        if (currentUser == null) {
             utils.clearAndGoActivity(LoginActivity())
             return
         }
@@ -48,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         userId = userIdEmail.first
         email = userIdEmail.second
         utils.createTabs(binding.appBar.viewPager2, viewPagerAdapter, binding.appBar.tabLayout)
+        setSupportActionBar(binding.appBar.toolbar)
         utils.createToolbar(
             this,
             supportActionBar,
@@ -80,13 +77,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
-        println("drawer click!!")
         utils.goAnotherActivity(binding.appBar.toolbar, optionList.indexOf(item.itemId), "option")
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        println("drawer click!!")
         utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

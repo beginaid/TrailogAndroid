@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/EditTextStyle" />
+        android:theme="@style/EditTextStyle" />
 
     <EditText
         android:id="@+id/weight"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/date"
-        app:theme="@style/EditTextStyle" />
+        android:theme="@style/EditTextStyle" />
 
     <Button
         android:id="@+id/add"
@@ -53,7 +53,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:enabled="false"
         android:text="@string/action_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add"
-        app:theme="@style/EditTextStyle" />
+        android:theme="@style/EditTextStyle" />
 
     <Button
         android:id="@+id/delete"
@@ -87,7 +86,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:enabled="false"
         android:text="@string/action_delete"
         android:theme="@style/ButtonAccent"
         app:layout_constraintEnd_toEndOf="parent"

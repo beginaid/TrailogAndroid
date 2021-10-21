@@ -5,6 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_directions_run_24.xml" value="0.21203703703703702" />
+        <entry key="app/src/main/res/drawable/ic_baseline_fitness_center_24.xml" value="0.21203703703703702" />
+        <entry key="app/src/main/res/drawable/ic_baseline_insights_24.xml" value="0.21203703703703702" />
+        <entry key="app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.21203703703703702" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/activity_add_training.xml" value="0.21808510638297873" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
@@ -14,7 +18,7 @@
         <entry key="app/src/main/res/layouts/activity/layout/activity_add_training.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layouts/activity/layout/activity_add_weight.xml" value="0.3375" />
         <entry key="app/src/main/res/layouts/activity/layout/activity_add_workout.xml" value="0.3375" />
-        <entry key="app/src/main/res/layouts/activity/layout/activity_login.xml" value="0.3375" />
+        <entry key="app/src/main/res/layouts/activity/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/activity/layout/activity_main.xml" value="0.3170289855072464" />
         <entry key="app/src/main/res/layouts/activity/layout/activity_setting.xml" value="0.3375" />
         <entry key="app/src/main/res/layouts/activity/layout/activity_signup.xml" value="0.3375" />
@@ -29,6 +33,7 @@
         <entry key="app/src/main/res/layouts/content/layout/content_add_weight.xml" value="0.3375" />
         <entry key="app/src/main/res/layouts/content/layout/content_add_workout.xml" value="0.3375" />
         <entry key="app/src/main/res/layouts/content/layout/content_main.xml" value="0.3375" />
+        <entry key="app/src/main/res/layouts/content/layout/content_setting.xml" value="0.2740628166160081" />
         <entry key="app/src/main/res/layouts/fragment/layout/fragment_training.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layouts/fragment/layout/fragment_weight.xml" value="0.3375" />
         <entry key="app/src/main/res/layouts/fragment/layout/fragment_workout.xml" value="0.3375" />
@@ -40,6 +45,7 @@
         <entry key="app/src/main/res/layouts/recycler/mipmap-anydpi-v26/ic_launcher.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/layouts/recycler/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3234375" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.42962962962962964" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26666666666666666" />
       </map>

@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
@@ -14,16 +13,18 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.children
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
+import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
+import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.common.custom_model.Workout
 import com.codaid.trailogandroid.databinding.ActivityAddWorkoutBinding
+import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
-class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    AdapterView.OnItemSelectedListener {
+class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityAddWorkoutBinding
     private var mGenre by Delegates.notNull<Int>()
@@ -53,6 +54,7 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first
         email = userIdEmail.second
+        setSupportActionBar(binding.appBar.toolbar)
         utils.createToolbar(
             this,
             supportActionBar,
@@ -60,9 +62,10 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         utils.setDefaultDate(date)
         date.setOnClickListener {
-            utils.showDatePicker(date)
+            utils.createDatePicker(date, this)
         }
 
         fabPlus.setOnClickListener {
@@ -80,8 +83,8 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         add.setOnClickListener {
             forms = binding.appBar.contentAddWorkout.addWorkoutForms.children.toList()
             when {
-                utils.checkFormsFilled(forms) -> {
-                    utils.showError(R.string.invalid_weight)
+                !utils.checkWorkoutFormsFilled(forms) -> {
+                    utils.showError(R.string.invalid_form)
                 }
                 else -> {
                     loading.visibility = View.VISIBLE
@@ -132,6 +135,7 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                                 docRef.set(workoutAdded)
                             }
                             loading.visibility = View.GONE
+                            utils.clearAndGoActivity(MainActivity(), "workout")
                         }
                         .addOnFailureListener {
                             loading.visibility = View.GONE
@@ -158,21 +162,15 @@ class AddWorkoutActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onOptionsItemSelected(item)
         utils.goAnotherActivity(
             binding.appBar.toolbar,
-            Utils.optionList.indexOf(item.itemId),
+            optionList.indexOf(item.itemId),
             "option"
         )
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        utils.goAnotherActivity(binding.appBar.toolbar, Utils.navList.indexOf(item.itemId), "nav")
+        utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
     }
 }

@@ -47,6 +47,7 @@ class AddWeightActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first
         email = userIdEmail.second
+        setSupportActionBar(binding.appBar.toolbar)
         utils.createToolbar(
             this,
             supportActionBar,
@@ -54,12 +55,13 @@ class AddWeightActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         utils.setDefaultDate(date)
         date.setOnClickListener {
-            utils.showDatePicker(date)
+            utils.createDatePicker(date, this)
         }
         dateDelete.setOnClickListener {
-            utils.showDatePicker(dateDelete)
+            utils.createDatePicker(dateDelete, this)
         }
 
         add.setOnClickListener {

@@ -41,7 +41,7 @@
                 android:hint="@string/prompt_event_weight"
                 android:inputType="number"
                 android:textColor="@color/black"
-                app:theme="@style/EditTextStyle" />
+                android:theme="@style/EditTextStyle" />
 
             <EditText
                 android:id="@+id/reps"
@@ -52,7 +52,7 @@
                 android:hint="@string/prompt_rep"
                 android:inputType="number"
                 android:textColor="@color/black"
-                app:theme="@style/EditTextStyle" />
+                android:theme="@style/EditTextStyle" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

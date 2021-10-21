@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:265166103879:android:60f1701f889cfef9851862",
+        "mobilesdk_app_id": "1:265166103879:android:4440ea139deb1541851862",
         "android_client_info": {
           "package_name": "com.codaid.trailogandroid"
         }
@@ -29,6 +29,13 @@
             {
               "client_id": "265166103879-m762llte3t03tdqoieon19niil299320.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "265166103879-thjvf23732av94g24o97mdt1v8u3ld9d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codaid.TrailogIOS"
+              }
             }
           ]
         }

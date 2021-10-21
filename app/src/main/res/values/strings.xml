@@ -72,16 +72,16 @@
     <string name="invalid_password_confirm">パスワードが合致しません</string>
     <string name="invalid_date">日付を入力してください</string>
     <string name="invalid_weight">体重を入力してください</string>
-    <string name="invalid_weight_training">負荷を入力してください</string>
-    <string name="invalid_reps">回数を入力してください</string>
-    <string name="invalid_minutes">時間[分]を入力してください</string>
-    <string name="invalid_max_bpm">最大bpmを入力してください</string>
-    <string name="invalid_avg_bpm">平均bpmを入力してください</string>
+    <string name="invalid_form">全てのフォームを入力してください</string>
 
     <string name="failed_login">ログイン失敗</string>
     <string name="failed_signup">新規登録失敗</string>
     <string name="failed_add_weight">体重追加失敗</string>
+    <string name="failed_add_training">筋トレ追加失敗</string>
+    <string name="failed_add_workout">有酸素追加失敗</string>
     <string name="failed_delete_weight">体重削除失敗</string>
+    <string name="failed_delete_training">体重削除失敗</string>
+    <string name="failed_delete_workout">体重削除失敗</string>
 
     <string name="error_code_already_in_use">ERROR_EMAIL_ALREADY_IN_USE</string>
     <string name="error_message_already_in_use">既にアカウントが存在します</string>

@@ -11,7 +11,9 @@ import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.databinding.ActivitySettingBinding
+import com.codaid.trailogandroid.main.login_signup.LoginActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
@@ -19,12 +21,13 @@ import kotlin.properties.Delegates
 class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivitySettingBinding
+    private lateinit var auth: FirebaseAuth
     private var mGenre by Delegates.notNull<Int>()
     private val utils = Utils()
-    private val auth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
         mGenre = 4
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,10 +39,11 @@ class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             binding.drawerLayout,
             binding.appBar.toolbar
         )
-        binding.appBar.toolbar.title = navTitles[mGenre]
         binding.navView.setNavigationItemSelectedListener(this)
+        binding.appBar.toolbar.title = navTitles[mGenre]
         binding.appBar.contentSetting.logout.setOnClickListener {
             auth.signOut()
+            utils.clearAndGoActivity(LoginActivity(), "main")
         }
     }
 

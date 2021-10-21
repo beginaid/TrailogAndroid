@@ -1,6 +1,5 @@
 package com.codaid.trailogandroid.main.dash_board
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.DateLabelFormatter
+import com.codaid.trailogandroid.common.Utils
 import com.codaid.trailogandroid.databinding.FragmentWeightBinding
 import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.components.XAxis
@@ -16,7 +16,6 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.utils.Utils
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -28,14 +27,15 @@ import java.util.Collections.min
 
 class WeightFragment : Fragment() {
 
+    private lateinit var userId: String
     private var _binding: FragmentWeightBinding? = null
-    private val colorBlue = Color.rgb(248, 12, 84)
+    private val colorAccent = Color.rgb(248, 12, 84)
     private val colorBlack = Color.rgb(51, 51, 51)
     private val db = Firebase.firestore
     private var xList = mutableListOf<String>()
     private var yList = mutableListOf<Float>()
     private var yValues = LineDataSet(mutableListOf<Entry>(), "")
-
+    private val utils = Utils()
 
     private val binding get() = _binding!!
 
@@ -50,18 +50,15 @@ class WeightFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lineChart.setNoDataText("")
         binding.loading.visibility = View.VISIBLE
-        val userId = getUserId()
-
-        binding.lineChartExample.setNoDataText("")
-        binding.lineChartExample.setNoDataTextColor(colorBlue)
-        binding.lineChartExample.getPaint(Chart.PAINT_INFO).textSize = Utils.convertDpToPixel(17f)
+        userId = utils.setSharedPreference().first
         CoroutineScope(Dispatchers.Main).launch {
             getWeights(userId)
             if (xList.size > 0 && yList.size > 0) {
                 setupLineChart()
-                binding.lineChartExample.data = lineDataWithCount()
-                binding.lineChartExample.invalidate()
+                binding.lineChart.data = lineDataWithCount()
+                binding.lineChart.invalidate()
             } else {
                 binding.noDataText.text = getString(R.string.nodata_weight)
             }
@@ -81,18 +78,11 @@ class WeightFragment : Fragment() {
         }
     }
 
-    private fun getUserId(): String? {
-        val sharedPref = requireContext().getSharedPreferences(
-            getString(R.string.preference_file_key), Context.MODE_PRIVATE
-        )
-        return sharedPref.getString(
-            getString(R.string.saved_user_id),
-            getString(R.string.default_user_id)
-        )
-    }
 
     private fun setupLineChart() {
-        binding.lineChartExample.apply {
+        binding.lineChart.apply {
+            getPaint(Chart.PAINT_INFO).textSize =
+                com.github.mikephil.charting.utils.Utils.convertDpToPixel(17f)
             description.isEnabled = false
             setTouchEnabled(false)
             isDragEnabled = false
@@ -121,23 +111,24 @@ class WeightFragment : Fragment() {
             )
         }
 
-        binding.lineChartExample.xAxis.apply {
+        binding.lineChart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             labelCount = xList.size
             granularity = 1f
             valueFormatter = DateLabelFormatter(xList)
+            enableGridDashedLine(10f, 10f, 0f)
         }
 
         yValues = LineDataSet(yEntryList, "weight").apply {
             axisDependency = YAxis.AxisDependency.LEFT
             setDrawCircleHole(false)
             setDrawValues(false)
-            setCircleColor(colorBlue)
+            setCircleColor(colorAccent)
             circleRadius = 4f
             lineWidth = 2f
-            color = colorBlue
+            color = colorAccent
         }
-        binding.lineChartExample.apply {
+        binding.lineChart.apply {
             axisLeft.apply {
                 axisMaximum = max(yList) + 1
                 axisMinimum = min(yList) - 3

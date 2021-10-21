@@ -1,7 +1,6 @@
 package com.codaid.trailogandroid.main.login_signup
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -12,65 +11,61 @@ import com.codaid.trailogandroid.databinding.ActivitySignupBinding
 import com.codaid.trailogandroid.main.dash_board.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignupActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var auth: FirebaseAuth
     private val utils = Utils()
-
-    public override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity()::class.java))
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
         binding = ActivitySignupBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_signup)
+        setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         utils.setSupportActionBarStyle(supportActionBar)
 
-        val email = binding.email.text.toString()
-        val password = binding.password.text.toString()
-        val passwordConfirm = binding.passwordConfirm.text.toString()
+        val email = binding.email
+        val password = binding.password
+        val passwordConfirm = binding.passwordConfirm
         val signup = binding.signup
         val loading = binding.loading
 
         signup.setOnClickListener {
-            if (!utils.isEmailValid(email)) {
+            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            if (!utils.isEmailValid(email.text.toString())) {
                 utils.showError(R.string.invalid_email)
-            } else if (!utils.isPasswordValid(password)) {
+            } else if (!utils.isPasswordValid(password.text.toString())) {
                 utils.showError(R.string.invalid_password)
-            } else if (!utils.isPasswordConfirmValid(password, passwordConfirm)) {
+            } else if (!utils.isPasswordConfirmValid(
+                    password.text.toString(),
+                    passwordConfirm.text.toString()
+                )
+            ) {
                 utils.showError(R.string.invalid_password_confirm)
             } else {
                 loading.visibility = View.VISIBLE
-                val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-                auth.createUserWithEmailAndPassword(email, password)
+                auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnSuccessListener {
-                        startActivity(Intent(applicationContext, MainActivity()::class.java))
+                        utils.setUserIdEmail(auth.currentUser)
+                        utils.clearAndGoActivity(MainActivity(), "main")
+                        loading.visibility = View.GONE
                     }
                     .addOnFailureListener { e ->
                         val errorCode = (e as FirebaseAuthException).errorCode
                         if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
                             utils.showError(R.string.error_message_already_in_use)
+                            loading.visibility = View.GONE
                         } else {
                             utils.showError(R.string.failed_signup)
+                            loading.visibility = View.GONE
                         }
                     }
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        super.onSupportNavigateUp()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        return true
     }
 }

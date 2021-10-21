@@ -1,6 +1,5 @@
 package com.codaid.trailogandroid.main.dash_board
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,20 +8,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
+import com.codaid.trailogandroid.common.Utils.Companion.navList
+import com.codaid.trailogandroid.common.Utils.Companion.navTitles
+import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.databinding.ActivityMainBinding
+import com.codaid.trailogandroid.main.login_signup.LoginActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val viewPagerAdapter by lazy { ViewPagerAdapter(this) }
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navList: List<Int>
-    private lateinit var navTitles: List<String>
-    private lateinit var activityList: List<AppCompatActivity>
-    private lateinit var optionActivityList: List<AppCompatActivity>
-    private lateinit var optionList: List<Int>
-    private lateinit var mIntent: Intent
+    private lateinit var auth: FirebaseAuth
     private var mGenre by Delegates.notNull<Int>()
     private lateinit var userId: String
     private lateinit var email: String
@@ -30,13 +31,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mGenre = 0
+        auth = Firebase.auth
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            utils.clearAndGoActivity(LoginActivity(), "main")
+            return
+        }
+        mGenre = 0
         setContentView(binding.root)
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first
         email = userIdEmail.second
         utils.createTabs(binding.appBar.viewPager2, viewPagerAdapter, binding.appBar.tabLayout)
+        setSupportActionBar(binding.appBar.toolbar)
         utils.createToolbar(
             this,
             supportActionBar,
@@ -44,6 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.toolbar.title = navTitles[mGenre]
         if (intent.getStringExtra("tab") == "training") {
             binding.appBar.viewPager2.setCurrentItem(1, false)
@@ -67,12 +76,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println("optionMenuItemSelected")
         super.onOptionsItemSelected(item)
         utils.goAnotherActivity(binding.appBar.toolbar, optionList.indexOf(item.itemId), "option")
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        println("navigationMenuItemSelected")
         utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -89,6 +100,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun onClickAddWorkout(view: View) {
         utils.goAnotherActivity(binding.appBar.toolbar, 3, "nav")
     }
-
 
 }

@@ -36,6 +36,7 @@ class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.toolbar.title = navTitles[mGenre]
         binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.contentSetting.logout.setOnClickListener {

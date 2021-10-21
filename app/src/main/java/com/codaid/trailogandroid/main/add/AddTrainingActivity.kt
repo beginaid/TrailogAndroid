@@ -62,6 +62,7 @@ class AddTrainingActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         utils.setDefaultDate(date)
         date.setOnClickListener {
             utils.showDatePicker(date)

@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.codaid.trailogandroid.R
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             binding.drawerLayout,
             binding.appBar.toolbar
         )
+        binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.toolbar.title = navTitles[mGenre]
         if (intent.getStringExtra("tab") == "training") {
             binding.appBar.viewPager2.setCurrentItem(1, false)
@@ -88,6 +91,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun onClickAddWorkout(view: View) {
         utils.goAnotherActivity(binding.appBar.toolbar, 3, "nav")
     }
-
 
 }

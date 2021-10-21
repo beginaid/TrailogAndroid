@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
             android:contentDescription="@string/description_fab"
-            android:src="@drawable/ic_baseline_delete_24"
+            android:src="@drawable/ic_baseline_remove_24"
             app:backgroundTint="@color/accent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

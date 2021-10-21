@@ -43,7 +43,7 @@ class SettingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         binding.navView.setNavigationItemSelectedListener(this)
         binding.appBar.contentSetting.logout.setOnClickListener {
             auth.signOut()
-            utils.goLoginActivity()
+            utils.clearAndGoActivity(LoginActivity())
         }
     }
 

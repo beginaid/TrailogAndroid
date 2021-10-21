@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
@@ -142,8 +143,8 @@ class Utils {
         context?.startActivity(mIntent)
     }
 
-    fun goLoginActivity() {
-        val intent = Intent(context, LoginActivity::class.java)
+    fun clearAndGoActivity(activity: AppCompatActivity) {
+        val intent = Intent(context, activity::class.java)
         intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
         context?.startActivity(intent)
     }

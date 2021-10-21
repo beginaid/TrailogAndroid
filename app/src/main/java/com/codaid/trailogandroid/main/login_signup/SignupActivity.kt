@@ -58,7 +58,7 @@ class SignupActivity : AppCompatActivity() {
 //                im.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
 //                auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
 //                    .addOnSuccessListener {
-//                        startActivity(Intent(applicationContext, MainActivity()::class.java))
+//                        utils.clearAndGoActivity(MainActivity())
 //                    }
 //                    .addOnFailureListener { e ->
 //                        val errorCode = (e as FirebaseAuthException).errorCode

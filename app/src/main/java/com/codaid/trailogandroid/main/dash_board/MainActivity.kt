@@ -16,13 +16,18 @@ import com.codaid.trailogandroid.common.Utils.Companion.navList
 import com.codaid.trailogandroid.common.Utils.Companion.navTitles
 import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.databinding.ActivityMainBinding
+import com.codaid.trailogandroid.main.login_signup.LoginActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val viewPagerAdapter by lazy { ViewPagerAdapter(this) }
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     private var mGenre by Delegates.notNull<Int>()
     private lateinit var userId: String
     private lateinit var email: String
@@ -30,6 +35,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if(currentUser == null){
+            utils.clearAndGoActivity(LoginActivity())
+            return
+        }
         mGenre = 0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

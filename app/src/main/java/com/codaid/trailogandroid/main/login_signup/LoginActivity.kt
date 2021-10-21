@@ -16,8 +16,8 @@ import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
     private val utils = Utils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            startActivity(Intent(applicationContext, MainActivity()::class.java))
+                            utils.clearAndGoActivity(MainActivity())
                         } else {
                             utils.showError(R.string.failed_login)
                         }

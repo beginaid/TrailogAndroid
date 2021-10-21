@@ -47,6 +47,7 @@ class AddWeightActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val userIdEmail = utils.setSharedPreference()
         userId = userIdEmail.first
         email = userIdEmail.second
+        setSupportActionBar(binding.appBar.toolbar)
         utils.createToolbar(
             this,
             supportActionBar,

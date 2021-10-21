@@ -1,7 +1,7 @@
 package com.codaid.trailogandroid.main.dash_board
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.codaid.trailogandroid.R
 import com.codaid.trailogandroid.common.Utils
+import com.codaid.trailogandroid.common.Utils.Companion.navList
+import com.codaid.trailogandroid.common.Utils.Companion.navTitles
+import com.codaid.trailogandroid.common.Utils.Companion.optionList
 import com.codaid.trailogandroid.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import kotlin.properties.Delegates
@@ -17,12 +20,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val viewPagerAdapter by lazy { ViewPagerAdapter(this) }
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navList: List<Int>
-    private lateinit var navTitles: List<String>
-    private lateinit var activityList: List<AppCompatActivity>
-    private lateinit var optionActivityList: List<AppCompatActivity>
-    private lateinit var optionList: List<Int>
-    private lateinit var mIntent: Intent
     private var mGenre by Delegates.notNull<Int>()
     private lateinit var userId: String
     private lateinit var email: String
@@ -68,11 +65,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
+        println("drawer click!!")
         utils.goAnotherActivity(binding.appBar.toolbar, optionList.indexOf(item.itemId), "option")
         return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        println("drawer click!!")
         utils.goAnotherActivity(binding.appBar.toolbar, navList.indexOf(item.itemId), "nav")
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

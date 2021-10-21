@@ -24,6 +24,7 @@
             android:name="com.codaid.trailogandroid.main.login_signup.SignupActivity"
             android:exported="true"
             android:label="@string/title_activity_signin"
+            android:parentActivityName="com.codaid.trailogandroid.main.login_signup.LoginActivity"
             android:theme="@style/Theme.TrailogAndroid.NoActionBar" />
         <activity
             android:name="com.codaid.trailogandroid.main.dash_board.MainActivity"

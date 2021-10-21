@@ -12,13 +12,12 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/ToolbarStyle"
         app:layout_constraintBottom_toTopOf="@id/tabLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ToolbarStyle" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

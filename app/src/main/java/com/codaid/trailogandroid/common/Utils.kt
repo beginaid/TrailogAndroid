@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
@@ -132,6 +134,8 @@ class Utils {
         } else if (loc == "option") {
             mIntent = Intent(context, optionActivityList[mGenre]::class.java)
         }
+        Log.d("test", context.toString())
+        mIntent.flags = FLAG_ACTIVITY_NEW_TASK
         context?.startActivity(mIntent)
     }
 
